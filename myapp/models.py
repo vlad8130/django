@@ -62,3 +62,23 @@ class Like(models.Model):
 
     def __str__(self):
         return f'By user {self.user.username} to article {self.article.id}'
+
+
+class Book(models.Model):
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        null=True,
+        related_name='books',
+    ),
+    name = models.CharField(max_length=300)
+    pages = models.IntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    rating = models.FloatField()
+    authors = models.ManyToManyField(Author)
+    pubdate = models.DateField()
+
+
+class Store(models.Model):
+    name = models.CharField(max_length=300)
+    books = models.ManyToManyField(Book)
