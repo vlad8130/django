@@ -2,6 +2,7 @@ import re
 
 from django.http import HttpResponse
 from django.shortcuts import render
+from .forms import ArticleForm, AuthorForm
 
 
 class MyClass:
@@ -79,3 +80,15 @@ def phone_number(request, phone_num):
 
 def code(request):
     return HttpResponse('Your code is converted!')
+
+def form_view(request):
+    article_form = ArticleForm(request.POST or None)
+    author_form = AuthorForm(request.POST or None)
+    return render(
+        request,
+        'form.html',
+        {
+            'article_form': article_form,
+            'author_form': author_form
+        }
+    )

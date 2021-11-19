@@ -1,0 +1,15 @@
+{% extends 'base.html' %}  
+{% block content %}  
+    <p>Article</p>  
+    <form method="post" action="{% url 'form-view' %}">  
+        {% csrf_token %}  
+        {{ article_form.as_p }}  
+        <button type="submit">Send Article</button>  
+    </form>  
+    <p>Author</p>  
+    <form method="post" action="{% url 'form-view' %}">  
+        {% csrf_token %}  
+        {{ author_form.as_p }}  
+        <button type="submit">Send Author</button>  
+    </form>  
+{% endblock %}
